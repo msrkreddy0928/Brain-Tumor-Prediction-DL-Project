@@ -16,6 +16,6 @@ def CNN_training():
 
 def save_model(model):
     
-    model.save('cnn_model.h5')
+    model.save('cnn_model.keras')
     
     

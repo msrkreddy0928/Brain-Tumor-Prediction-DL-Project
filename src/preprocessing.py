@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import cv2
 from keras._tf_keras.keras.preprocessing.image import ImageDataGenerator
+from pymongo import MongoClient
 
 
 file_p = []
@@ -19,6 +20,24 @@ def load_images(path_list,class_labels):
     filepath = pd.Series(file_p, name="filepaths")    
     Labelss = pd.Series(labels, name="labels")
     data = pd.concat([filepath, Labelss], axis=1)
+    data = pd.DataFrame(data)
+    
+    return data
+
+def load_from_database(url):
+    try:
+        client = MongoClient(url)
+     
+    except Exception as e:
+        print(e)
+         
+    database = client['DL-Project']
+    collection = database['Brain-Tumor dataset']
+    
+    cursor = collection.find()
+    
+    data = list(cursor)
+    
     data = pd.DataFrame(data)
     
     return data

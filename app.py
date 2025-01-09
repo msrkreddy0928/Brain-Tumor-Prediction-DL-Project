@@ -8,7 +8,7 @@ from keras._tf_keras.keras.models import load_model
 
 app = Flask(__name__)
 
-model = load_model('cnn_model.h5')
+model = load_model('cnn_model.keras')
 
 
 @app.route("/")
@@ -51,7 +51,7 @@ def predict():
         return render_template('home.html',prediction_text=pred_text)
     except Exception  as e:
         print(e)
-        return  render_template('home.html',prediction_text='Error in preprocessing the image.')
+        return  render_template('home.html',prediction_text='Error in preprocessing the image')
     
 
 
