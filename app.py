@@ -1,19 +1,19 @@
-from flask import Flask,render_template
+# from flask import Flask,render_template
 
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 
-@app.route("/")
-def home():
+# @app.route("/")
+# def home():
     
-    return render_template()
+#     return render_template()
 
-@app.route("/predict",methods=['POST'])
-def predict():
+# @app.route("/predict",methods=['POST'])
+# def predict():
     
-    return render_template()
+#     return render_template()
     
     
     
