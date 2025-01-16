@@ -13,8 +13,7 @@ model = load_model('cnn_model.keras')
 
 
 @app.route("/")
-def home(): 
-    
+def home():
     return render_template('home.html')
 
 @app.route("/predict",methods=['POST'])

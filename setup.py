@@ -16,7 +16,7 @@ setup(
         'numpy'
         'scikit-learn'
         'keras'
-        'opencv2'
+        'opencv'
         'flask'
         'scipy'
         'pymongo'
