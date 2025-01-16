@@ -1,53 +1,53 @@
-from pymongo import MongoClient
-from dotenv import load_dotenv
-import os
-import pandas as pd
+# from pymongo import MongoClient
+# from dotenv import load_dotenv
+# import os
+# import pandas as pd
 
-load_dotenv()
+# load_dotenv()
 
-url = os.getenv('url')
+# url = os.getenv('url')
 
-client = MongoClient(url)
+# client = MongoClient(url)
 
-database = client['DL-Project']
-collection = database['Brain-Tumor-Type']
-
-
-glioma = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/glioma"
-meningoma = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/meningioma"
-notumor = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/notumor"
-pituitarey = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/pituitary"
+# database = client['DL-Project']
+# collection = database['Brain-Tumor-Type']
 
 
-
-path_list = [glioma,meningoma,notumor,pituitarey]
-class_labels = ['glioma','meningioma','notumor','pituitary']
-
-# Brain_Tumor = "/home/shiva/Desktop/ML/Files/Data/Brain Tumor"
-# Healthy ="/home/shiva/Desktop/ML/Files/Data/Healthy"
-
-# path_list = [Brain_Tumor, Healthy]
-# class_labels = ['BrainTumor', 'Healthy']
+# glioma = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/glioma"
+# meningoma = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/meningioma"
+# notumor = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/notumor"
+# pituitarey = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Training/pituitary"
 
 
-file_p = []
-labels = []
+
+# path_list = [glioma,meningoma,notumor,pituitarey]
+# class_labels = ['glioma','meningioma','notumor','pituitary']
+
+# # Brain_Tumor = "/home/shiva/Desktop/ML/Files/Data/Brain Tumor"
+# # Healthy ="/home/shiva/Desktop/ML/Files/Data/Healthy"
+
+# # path_list = [Brain_Tumor, Healthy]
+# # class_labels = ['BrainTumor', 'Healthy']
 
 
-for i, dir_list in enumerate(path_list):
-    for filename in os.listdir(dir_list):
-                fpath = os.path.join(dir_list, filename)
-                file_p.append(fpath)
-                labels.append(class_labels[i])
-
-filepath = pd.Series(file_p, name="filepaths")    
-Labelss = pd.Series(labels, name="labels")
-data = pd.concat([filepath, Labelss], axis=1)
-data = pd.DataFrame(data)
+# file_p = []
+# labels = []
 
 
-dict = data.to_dict(orient="records")
+# for i, dir_list in enumerate(path_list):
+#     for filename in os.listdir(dir_list):
+#                 fpath = os.path.join(dir_list, filename)
+#                 file_p.append(fpath)
+#                 labels.append(class_labels[i])
+
+# filepath = pd.Series(file_p, name="filepaths")    
+# Labelss = pd.Series(labels, name="labels")
+# data = pd.concat([filepath, Labelss], axis=1)
+# data = pd.DataFrame(data)
+
+
+# dict = data.to_dict(orient="records")
  
-result = collection.insert_many(dict)
+# result = collection.insert_many(dict)
 
-# print(result)
+# # print(result)
