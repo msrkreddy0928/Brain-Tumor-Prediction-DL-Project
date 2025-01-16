@@ -1,4 +1,4 @@
-from preprocessing import load_images,preprocessing_images,load_from_database,load_eval_images
+from preprocessing import load_images,preprocessing_images,load_from_database,load_eval_images,load_test_from_database
 from training import CNN_training,save_model
 from evaluation import CNN_evaluate
 from sklearn.model_selection import train_test_split
@@ -23,6 +23,7 @@ pituitary_t = "/home/shiva/Desktop/ML/Files/Brain_Tumor dataset/Testing/pituitar
 
 
 path_list = [glioma,meningioma,notumor,pituitary]
+
 class_labels = ['glioma ','meningioma','notumor','pituitary']
 
 path_list_test = [glioma_t,meningioma_t,notumor_t,pituitary_t]
@@ -32,13 +33,14 @@ url = os.getenv('url')
 
 def pipeline(path_list):
     
-    train_df = load_images(path_list,class_labels)
+    # train_df = load_images(path_list,class_labels)
     
-    test_df = load_images(path_list_test,class_labels)
+    train_df = load_from_database(url)
     
-    # data = load_from_database(url)
+    # test_df = load_images(path_list_test,class_labels)
     
-    # print(data.head(10))
+    test_df = load_test_from_database(url)
+    
     
     # train_df,test_df = train_test_split(d, test_size=0.20, random_state=30,stratify=data.labels)
     

@@ -55,7 +55,7 @@ def load_from_database(url):
         print(e)
          
     database = client['DL-Project']
-    collection = database['Brain-Tumor dataset']
+    collection = database['Brain-Tumor-Type']
     
     cursor = collection.find()
     
@@ -65,6 +65,24 @@ def load_from_database(url):
     
     return data
 
+
+def load_test_from_database(url):
+    try:
+        client = MongoClient(url)
+     
+    except Exception as e:
+        print(e)
+         
+    database = client['DL-Project']
+    collection = database['Brain-Tumor-Type-Test']
+    
+    cursor = collection.find()
+    
+    data = list(cursor)
+    
+    data = pd.DataFrame(data)
+    
+    return data
 
 
 def enhance_image(image):
@@ -102,7 +120,7 @@ def preprocessing_images(train_df,test_df):
                                      color_mode='rgb',
                                      class_mode="categorical",
                                      batch_size=64,
-                                     shuffle= True
+                                     shuffle= True  
                                     )
    
     
