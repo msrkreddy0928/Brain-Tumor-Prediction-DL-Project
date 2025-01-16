@@ -10,7 +10,7 @@ def CNN_training():
     model.add(MaxPooling2D(2,2))
     model.add(Flatten())
     model.add(Dense(128,activation='relu'))
-    model.add(Dense(1,activation='sigmoid'))
+    model.add(Dense(4,activation='softmax'))
     
     return model
 

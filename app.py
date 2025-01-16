@@ -1,7 +1,8 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,jsonify
 import requests
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 from keras._tf_keras.keras.models import load_model
 
 
@@ -43,20 +44,42 @@ def predict():
         img = np.expand_dims(img,axis=0)
         pred = model.predict(img)
         print(pred)
-        if pred[0][0]>0.5:  
-           pred_text="The uploaded image is not brain tumor."
+        print(max(pred[0])*100)
+        index = np.argmax(pred[0])
+        print(index)
+        labels = ['glioma','meningioma','not brain tumor','pituitary']
+        
+        if index==0:
+           pred_text="The person is having brain tumor of type glioma."
+           return jsonify({
+              'labels':labels,
+               'predictions': [float((max(pred[0])*100)),0,0,0],
+                'predictionText':pred_text })
+        elif index==1:
+            pred_text= "The person is having brain tumor of type meningioma."
+            return jsonify({
+              'labels': labels,
+               'predictions': [0,float((max(pred[0])*100)),0,0],
+                'predictionText':pred_text })
+        elif index==2:
+             pred_text="The person is not having brain tumor"
+             return jsonify({
+              'labels': labels,
+               'predictions': [0,0,float((max(pred[0])*100)),0],
+                'predictionText':pred_text })
         else:
-            pred_text="The uploaded image is a brain tumor."
-            
-        return render_template('home.html',prediction_text=pred_text)
+             pred_text="The person is having brain tumor of type pituitary"
+             return jsonify({
+              'labels': labels,
+               'predictions': [0,0,0,float((max(pred[0])*100))],
+                'predictionText':pred_text })
+
+
+        
     except Exception  as e:
         print(e)
         return  render_template('home.html',prediction_text='Error in preprocessing the image')
     
-
-
-
-
 
     
     

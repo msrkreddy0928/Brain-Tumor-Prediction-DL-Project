@@ -18,11 +18,34 @@ def load_images(path_list,class_labels):
                 labels.append(class_labels[i])
 
     filepath = pd.Series(file_p, name="filepaths")    
+    Labels = pd.Series(labels, name="labels")
+    data = pd.concat([filepath, Labels], axis=1)
+    data = pd.DataFrame(data)
+    
+    return data
+
+
+def load_eval_images(dir):
+    file_p = []
+    labels = [] 
+    
+    for i,filename in enumerate(os.listdir(dir)):
+                fpath = os.path.join(dir, filename)
+                file_p.append(fpath)
+                if i==0:
+                    labels.append('Healthy')
+                else:
+                    labels.append('Brain_Tumor')
+
+    filepath = pd.Series(file_p, name="filepaths")    
     Labelss = pd.Series(labels, name="labels")
     data = pd.concat([filepath, Labelss], axis=1)
     data = pd.DataFrame(data)
     
     return data
+
+
+
 
 def load_from_database(url):
     try:
@@ -70,16 +93,19 @@ def preprocessing_images(train_df,test_df):
     train = image_gen.flow_from_dataframe(dataframe= train_df,x_col="filepaths",y_col="labels",
                                       target_size=(256,256),
                                       color_mode='rgb',
-                                      class_mode="binary", 
+                                      class_mode="categorical", 
                                       batch_size=64,
                                       shuffle= True            
                                      )
     test = image_gen.flow_from_dataframe(dataframe= test_df,x_col="filepaths", y_col="labels",
                                      target_size=(256,256),
                                      color_mode='rgb',
-                                     class_mode="binary",
+                                     class_mode="categorical",
                                      batch_size=64,
                                      shuffle= True
                                     )
+   
+    
+    
     return  train,test
     
