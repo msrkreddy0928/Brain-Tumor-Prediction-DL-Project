@@ -1,13 +1,8 @@
 pandas
 numpy
-scikit-learn
 keras
 tensorflow
 opencv-python
-matplotlib
 flask
 requests
 gunicorn
-scipy
-pymongo
-python-dotenv

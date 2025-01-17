@@ -2,7 +2,6 @@ from flask import Flask,render_template,request,jsonify
 import requests
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
 from keras._tf_keras.keras.models import load_model
 
 
