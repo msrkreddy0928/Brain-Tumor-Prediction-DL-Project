@@ -2,7 +2,7 @@ pandas==2.2.3
 numpy==1.26.4
 scikit-learn==1.5.2
 keras==3.7.0
-opencv==4.5.3
+opencv==4.10.0
 matplotlib==3.9.2
 flask==3.0.3
 gunicorn
