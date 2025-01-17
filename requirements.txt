@@ -5,6 +5,7 @@ keras
 opencv-python
 matplotlib
 flask
+requests
 gunicorn
 scipy
 pymongo
