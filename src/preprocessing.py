@@ -9,6 +9,7 @@ from pymongo import MongoClient
 file_p = []
 labels = []
 
+#This function loads training image file paths from a list of directories and associates them with class labels.
 def load_images(path_list,class_labels):
     
     for i, dir_list in enumerate(path_list):
@@ -24,7 +25,7 @@ def load_images(path_list,class_labels):
     
     return data
 
-
+#This function loads testing image file paths from a list of directories and associates them with class labels.
 def load_eval_images(dir):
     file_p = []
     labels = [] 
@@ -45,7 +46,7 @@ def load_eval_images(dir):
     return data
 
 
-
+#This function loads training image file paths from a database.
 
 def load_from_database(url):
     try:
@@ -66,6 +67,8 @@ def load_from_database(url):
     return data
 
 
+#This function loads testing image file paths from a database.
+
 def load_test_from_database(url):
     try:
         client = MongoClient(url)
@@ -84,7 +87,7 @@ def load_test_from_database(url):
     
     return data
 
-
+#enhance_image function is used to enchance the input image
 def enhance_image(image):
 
     kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
@@ -100,7 +103,7 @@ def enhance_image(image):
     return image
 
 
-
+# This function preprocesses the images from the provided training and testing dataframes
 def preprocessing_images(train_df,test_df):
     
     image_gen = ImageDataGenerator(

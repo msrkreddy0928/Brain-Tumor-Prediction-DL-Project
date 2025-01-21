@@ -1,6 +1,10 @@
 from keras._tf_keras.keras import Sequential
 from keras._tf_keras.keras.layers import Conv2D,MaxPooling2D,Dense,Flatten
 
+
+
+ #CNN_training function: This function preapres the given model by adding different layers.
+
 def CNN_training():
     
     model = Sequential()
@@ -14,6 +18,8 @@ def CNN_training():
     
     return model
 
+
+ #save_model function saves the trained model in .keras format.
 def save_model(model):
     
     model.save('cnn_model.keras')
