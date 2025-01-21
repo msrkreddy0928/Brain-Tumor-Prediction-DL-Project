@@ -38,7 +38,7 @@ url = os.getenv('url')
 
 
 
-# Main function to run the pipeline, load data, preprocess it, train models, and evaluate performance
+# Main function to run the pipeline, load data, preprocess it, train model,and evaluate performance.
 def pipeline(path_list):
     logging.info("pipeline started")
     
